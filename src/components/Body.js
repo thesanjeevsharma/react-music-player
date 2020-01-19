@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { TopBar } from './';
+import { TopBar, Artists } from './';
 
 const Body = () => {
     return (
         <Style>
             <TopBar />
+            <Artists />
         </Style>
     )
 }

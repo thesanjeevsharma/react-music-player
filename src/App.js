@@ -33,5 +33,6 @@ const Container = styled.div`
 
   main {
     grid-area: body;
+    overflow: hidden;
   }
 `

@@ -23,6 +23,7 @@ const TopBar = () => {
 export default TopBar;
 
 const Style = styled.div`
+    margin-bottom: 30px;
     display: grid;
     align-items: baseline;
     grid-template-areas:
@@ -54,6 +55,7 @@ const Style = styled.div`
 
     .actions {
         grid-area: actions;
+        text-align: right;
 
         i {
             margin-left: 15px;
