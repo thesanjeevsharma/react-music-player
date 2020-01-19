@@ -53,10 +53,10 @@ const Navigation = () => {
 export default Navigation;
 
 const Style = styled.div`
-    background: #0B0D13;
+    background: #191B1F;
     height: 100%;
     padding: 20px;
-    color: #C0C3CA;
+    color: #5E6062;
     position: relative;
     
     i {
