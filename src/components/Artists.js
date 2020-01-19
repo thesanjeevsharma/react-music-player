@@ -2,132 +2,43 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Artists = () => {
+
+    const [artists, setArtists] = React.useState([]);
+
+    React.useEffect(() => {
+        (async () => {
+            const response = await fetch('/artists', {
+                method : 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const res = await response.json();
+            console.log(res);
+            setArtists(res);
+        })();
+    }, [])
+
     return (
         <Style>
             <div className="heading">
                 Explore new
             </div>
             <div className="carousel">
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/lana.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Lana Del Rey
+                {
+                    artists.map(artist => (
+                        <div className="tile" key={ artist.id }>
+                            <div className="tile-img">
+                                <img src={ artist.img } alt="Artist"/>
+                            </div>
+                            <div className="tile-content">
+                                <div className="name">
+                                    { artist.name }
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/eminem.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Eminem
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/lana.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Lana Del Rey
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/eminem.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Eminem
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/lana.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Lana Del Rey
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/eminem.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Eminem
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/lana.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Lana Del Rey
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/eminem.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Eminem
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/lana.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Lana Del Rey
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/eminem.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Eminem
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/lana.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Lana Del Rey
-                        </div>
-                    </div>
-                </div>
-                <div className="tile">
-                    <div className="tile-img">
-                        <img src={ require('../assets/img/eminem.jpg') }/>
-                    </div>
-                    <div className="tile-content">
-                        <div className="name">
-                            Eminem
-                        </div>
-                    </div>
-                </div>
+                    ))
+                }
             </div>
         </Style>
     )
@@ -154,7 +65,7 @@ const Style = styled.div`
 
         .tile {
             width: 150px;
-            margin-right: 20px;
+            margin-right: 25px;
             flex: 0 0 auto; 
 
             .tile-img {

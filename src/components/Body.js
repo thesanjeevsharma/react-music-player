@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { TopBar, Artists, Songs, Genres } from './';
+import { TopBar, Artists, Songs, Genres, Player } from './';
 
 const Body = () => {
     return (
@@ -12,6 +12,7 @@ const Body = () => {
                 <Songs />
                 <Genres />
             </section>
+            <Player />
         </Style>
     )
 }

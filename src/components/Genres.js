@@ -44,12 +44,12 @@ const Style = styled.div`
 
     .tiles {
         display: grid;
-        grid-gap: 10px;
+        gap: 10px;
         grid-template-columns: repeat(3, 1fr);
 
         .tile {
             width: 100%;
-            height: 150px;
+            height: 120px;
             background: #25262C;
             display: flex;
             justify-content: center;

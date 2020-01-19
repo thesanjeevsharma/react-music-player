@@ -1,0 +1,81 @@
+{
+    "artists" : [
+        {
+            "id" : 1,
+            "img" : "/assets/img/namika.jpg",
+            "name" : "Namika"
+        },
+        {
+            "id" : 2,
+            "img" : "/assets/img/eminem.jpg",
+            "name" : "Eminem"
+        },
+        {
+            "id" : 3,
+            "img" : "/assets/img/odesza.jpg",
+            "name" : "ODESZA"
+        },
+        {
+            "id" : 4,
+            "img" : "/assets/img/illenium.jpg",
+            "name" : "Illenium"
+        },
+        {
+            "id" : 5,
+            "img" : "/assets/img/chainsmokers.jpg",
+            "name" : "The Chainsmokers"
+        },
+        {
+            "id" : 6,
+            "img" : "/assets/img/lauv.jpg",
+            "name" : "Lauv"
+        },
+        {
+            "id" : 7,
+            "img" : "/assets/img/lana.jpg",
+            "name" : "Lana Del Rey"
+        },
+        {
+            "id" : 8,
+            "img" : "/assets/img/ekali.jpg",
+            "name" : "Ekali"
+        }
+    ],
+    "songs" : [
+        {
+            "id" : 1,
+            "title" : "Closer",
+            "artist" : "The Chainsmokers",
+            "length" : "4:32",
+            "img" : "/assets/img/chainsmokers.jpg"
+        },
+        {
+            "id" : 2,
+            "title" : "Fuck, I'm lonely",
+            "artist" : "Lauv",
+            "length" : "2:59",
+            "img" : "/assets/img/lauv.jpg"
+        },
+        {
+            "id" : 3,
+            "title" : "Crashing",
+            "artist" : "Ekali",
+            "length" : "3:35",
+            "img" : "/assets/img/ekali.jpg"
+        },
+        {
+            "id" : 4,
+            "title" : "Video Games",
+            "artist" : "Lana Del Rey",
+            "length" : "3:11",
+            "img" : "/assets/img/lana.jpg"
+        },
+        {
+            "id" : 5,
+            "title" : "A Moment Apart",
+            "artist" : "ODESZA",
+            "length" : "5:11",
+            "img" : "/assets/img/odesza.jpg"
+        }
+    ]
+}

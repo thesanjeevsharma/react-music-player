@@ -1,23 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Song = ({ data }) => {
+const Song = ({ index, data }) => {
     return (
         <div className="song">
             <div className="left">
                 <span className="number">
-                #{ data.index }
+                #{ index }
                 </span>
                 <span className="song-img">
-                    <img src={ require('../assets/img/lana.jpg') }/>
+                    <img src={ data.img }/>
                 </span>
                 <span className="song-title">
-                    { data.song.title }
+                    { data.title }
+                </span>
+                <span className="song-artist">
+                    { data.artist }
                 </span>
             </div>
             <div className="right">
                 <span className="song-length">
-                    { data.song.length }
+                    { data.length }
                 </span>
                 <span className="actions">
                     <i className="fas fa-ellipsis-v" />
@@ -28,13 +31,31 @@ const Song = ({ data }) => {
 }
 
 const Songs = () => {
+
+    const [songs, setSongs] = React.useState([]);
+    React.useEffect(() => {
+        ( async() => {
+            const response = await fetch('/songs', {
+                method : 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            const res = await response.json();
+            setSongs(res);
+        })();
+    }, []);
+
     return (
         <Style>
             <div className="heading">
                 Popular
             </div>
             <div className="songs">
-                <Song data={ { index : 1, song : { img : '../assets/img/lana.jpg', title : 'Love', length : '2:34' } } }/>
+                {
+                    songs.map((song, index) => <Song key={ song.id } data={ song } index={ index + 1 }/>)
+                }
+                
             </div>
         </Style>
     )
@@ -57,6 +78,8 @@ const Style = styled.div`
             background: #25262C;
             padding: 5px 10px;
             border-radius: 5px;
+            margin-bottom: 10px;
+            transition: .2s ease;
             display: grid;
             grid-template-areas:
                 'left left . right'; 
@@ -71,8 +94,8 @@ const Style = styled.div`
                 }
     
                 .song-img {
-                    width: 50px;
-                    height: 50px;
+                    width: 40px;
+                    height: 40px;
                     overflow: hidden;
                     border-radius: 5px;
     
@@ -91,6 +114,12 @@ const Style = styled.div`
     
                 .song-title {
                     margin-left: 20px;
+                    min-width: 200px;
+                }
+
+                .song-artist {
+                    margin-left: 20px;
+                    min-width: 150px;
                 }
             }
 
@@ -99,6 +128,11 @@ const Style = styled.div`
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+            }
+
+            &:hover {
+                color: #fff;
+                cursor: pointer;
             }
             
         }

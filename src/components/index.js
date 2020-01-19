@@ -4,6 +4,7 @@ import TopBar from './TopBar';
 import Artists from './Artists';
 import Songs from './Songs';
 import Genres from './Genres';
+import Player from './Player';
 
 export {
     Navigation,
@@ -11,5 +12,6 @@ export {
     TopBar,
     Artists,
     Genres,
-    Songs
+    Songs,
+    Player
 }
