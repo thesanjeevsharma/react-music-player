@@ -1,13 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { TopBar, Artists } from './';
+import { TopBar, Artists, Songs, Genres } from './';
 
 const Body = () => {
     return (
         <Style>
             <TopBar />
             <Artists />
+            <section>
+                <Songs />
+                <Genres />
+            </section>
         </Style>
     )
 }
@@ -19,4 +23,11 @@ const Style = styled.div`
     height: 100%;
     padding: 20px 50px;
     color: #5E6062;
+
+    section {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-areas:
+            'songs songs genres';
+    }
 `

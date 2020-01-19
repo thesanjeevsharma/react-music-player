@@ -136,6 +136,8 @@ const Artists = () => {
 export default Artists;
 
 const Style = styled.div`
+    margin-bottom: 50px;
+
     .heading {
         color: #fff;
         font-size: 1.5rem;
