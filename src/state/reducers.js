@@ -3,6 +3,11 @@ const initial_state = {
     nav : 'explore',
     user : {
         name : 'Sanjeev'
+    },
+    player : {
+        song : {
+            id : 3
+        }
     }
 }
 

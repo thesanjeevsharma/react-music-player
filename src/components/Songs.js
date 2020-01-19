@@ -1,9 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const Song = ({ index, data }) => {
+
+    const { player } = useSelector(state => state);
+
     return (
-        <div className="song">
+        <StyleSong playing={ player.song.id === data.id }>
             <div className="left">
                 <span className="number">
                 #{ index }
@@ -26,7 +30,7 @@ const Song = ({ index, data }) => {
                     <i className="fas fa-ellipsis-v" />
                 </span>
             </div>
-        </div>
+        </StyleSong>
     )
 }
 
@@ -55,7 +59,6 @@ const Songs = () => {
                 {
                     songs.map((song, index) => <Song key={ song.id } data={ song } index={ index + 1 }/>)
                 }
-                
             </div>
         </Style>
     )
@@ -71,70 +74,69 @@ const Style = styled.div`
         font-size: 1.5rem;
         margin-bottom: 20px;
     }
+`
 
-    .songs {
+const StyleSong = styled.div`
+    ${ props => props.playing && css`
+        border: 1px solid #1E35CD;
+    `}
+    background: #25262C;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: .2s ease;
+    display: grid;
+    grid-template-areas:
+        'left left . right'; 
 
-        .song {
-            background: #25262C;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            transition: .2s ease;
-            display: grid;
-            grid-template-areas:
-                'left left . right'; 
-
-            .left {
-                grid-area: left;
-                display: flex;
-                align-items: center;
-                
-                .number {
-                    min-width: 40px;
-                }
-    
-                .song-img {
-                    width: 40px;
-                    height: 40px;
-                    overflow: hidden;
-                    border-radius: 5px;
-    
-                    img {
-                        width: 100%;
-                        height: auto;
-                        object-fit: cover;
-                        user-drag: none; 
-                        user-select: none;
-                        -moz-user-select: none;
-                        -webkit-user-drag: none;
-                        -webkit-user-select: none;
-                        -ms-user-select: none;
-                    }
-                }
-    
-                .song-title {
-                    margin-left: 20px;
-                    min-width: 200px;
-                }
-
-                .song-artist {
-                    margin-left: 20px;
-                    min-width: 150px;
-                }
-            }
-
-            .right {
-                grid-area: right;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            &:hover {
-                color: #fff;
-                cursor: pointer;
-            }
-            
+    .left {
+        grid-area: left;
+        display: flex;
+        align-items: center;
+        
+        .number {
+            min-width: 40px;
         }
+
+        .song-img {
+            width: 40px;
+            height: 40px;
+            overflow: hidden;
+            border-radius: 5px;
+
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                user-drag: none; 
+                user-select: none;
+                -moz-user-select: none;
+                -webkit-user-drag: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+            }
+        }
+
+        .song-title {
+            margin-left: 20px;
+            min-width: 200px;
+        }
+
+        .song-artist {
+            margin-left: 20px;
+            min-width: 150px;
+        }
+    }
+
+    .right {
+        grid-area: right;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &:hover {
+        color: #fff;
+        cursor: pointer;
     }
 `

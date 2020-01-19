@@ -24,6 +24,7 @@ const Style = styled.div`
     height: 100%;
     padding: 20px 50px;
     color: #5E6062;
+    position: relative;
 
     section {
         display: grid;
