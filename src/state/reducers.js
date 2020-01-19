@@ -1,6 +1,9 @@
 const initial_state = {
     app_name : 'App',
-    nav : 'explore'
+    nav : 'explore',
+    user : {
+        name : 'Sanjeev'
+    }
 }
 
 const reducer = (state = initial_state, action) => {
