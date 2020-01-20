@@ -47,35 +47,40 @@
             "title" : "Closer",
             "artist" : "The Chainsmokers",
             "length" : "4:32",
-            "img" : "/assets/img/chainsmokers.jpg"
+            "img" : "/assets/img/chainsmokers.jpg",
+            "url" : "/assets/sounds/chainsmokers.mp3"
         },
         {
             "id" : 2,
             "title" : "Fuck, I'm lonely",
             "artist" : "Lauv",
             "length" : "2:59",
-            "img" : "/assets/img/lauv.jpg"
+            "img" : "/assets/img/lauv.jpg",
+            "url" : "/assets/sounds/lauv.mp3"
         },
         {
             "id" : 3,
             "title" : "Crashing",
             "artist" : "Ekali",
             "length" : "3:35",
-            "img" : "/assets/img/ekali.jpg"
+            "img" : "/assets/img/ekali.jpg",
+            "url" : "/assets/sounds/ekali.mp3"
         },
         {
             "id" : 4,
             "title" : "Video Games",
             "artist" : "Lana Del Rey",
             "length" : "3:11",
-            "img" : "/assets/img/lana.jpg"
+            "img" : "/assets/img/lana.jpg",
+            "url" : "/assets/sounds/chainsmokers.mp3"
         },
         {
             "id" : 5,
             "title" : "A Moment Apart",
             "artist" : "ODESZA",
             "length" : "5:11",
-            "img" : "/assets/img/odesza.jpg"
+            "img" : "/assets/img/odesza.jpg",
+            "url" : "/assets/sounds/ekali.mp3"
         }
     ]
 }

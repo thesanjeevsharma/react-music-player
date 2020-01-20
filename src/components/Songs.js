@@ -1,13 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Song = ({ index, data }) => {
 
+    const dispatch = useDispatch();
     const { player } = useSelector(state => state);
 
     return (
-        <StyleSong playing={ player.song.id === data.id }>
+        <StyleSong playing={ player.song.id === data.id } onClick={ () => dispatch({ type : 'PLAY_SONG', payload : { active : true, song : { id : data.id } } }) }>
             <div className="left">
                 <span className="number">
                 #{ index }
@@ -77,6 +78,7 @@ const Style = styled.div`
 `
 
 const StyleSong = styled.div`
+    border: 1px solid #25262C;
     ${ props => props.playing && css`
         border: 1px solid #1E35CD;
     `}
