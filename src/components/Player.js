@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 const Player = () => {
@@ -8,11 +8,19 @@ const Player = () => {
     const { player } = useSelector(state => state);
     const [song, setSong] = React.useState({});
     const [controls, setControls] = React.useState({ play : false, volume : 0.5 });
-    const [track, setTrack] = React.useState({ audio : undefined, current_time : '0:00', total_time : '0' });
+    const [track, setTrack] = React.useState(undefined);
+    const [time, setTime] = React.useState({ current : 0, total : 1 });
+    let timer;
+
+    const clock = () => {
+        timer = setInterval(() => {
+            if (track && controls.play) setTime({ current : Math.floor(track.currentTime), total : Math.floor(track.duration) });
+        }, 1000);
+    }
 
     React.useEffect(() => {
-        if (track.audio) {
-            track.audio.pause();
+        if (track) {
+            track.pause();
             setControls({ ...controls, play : false });
         }
         (async () => {
@@ -25,9 +33,8 @@ const Player = () => {
                 });
                 const res = await response.json();
                 setSong(res);
-                setTrack({ ...track, total_time : res.length, audio : new Audio(res.url) });
+                setTrack(new Audio(res.url));
                 setControls({ ...controls, play : true });
-                track.audio.volume = controls.volume;
             } catch (e) {
                 console.log(e);
             }
@@ -35,29 +42,36 @@ const Player = () => {
     }, [player.song.id]);
 
     React.useEffect(() => {
-        if (track.audio) {
+        if (track) {
             if (controls.play) {
-                track.audio.play();
+                track.play();
             } else {
-                track.audio.pause();
+                track.pause();
             }
         }
     }, [controls.play])
 
     React.useEffect(() => {
-        if (track.audio) {
-            track.audio.volume = controls.volume;
+        if (track) {
+            track.volume = controls.volume;
         }
     }, [controls.volume])
 
     React.useEffect(() => {
+        clock();
         return () => {
-            setTrack({ ...track, audio : undefined });
+            clearInterval(timer);
+        }
+    }, [track, controls.play])
+
+    React.useEffect(() => {
+        return () => {
+            setTrack(undefined);
         };
     }, []);
 
     return (
-        <Style progress={ Math.floor((track.current_time / track.total_time) * 100) }>
+        <Style progress={ !track ? '0' : (time.current / time.total) * 100 }>
             <div className="controls">
                 <i className="fas fa-backward" onClick={ () => dispatch({ type : 'PREV_SONG' }) }/>
                 <i className={ controls.play ? 'fas fa-pause' : 'hide' } onClick={ () => setControls({ ...controls, play : false }) }/>
@@ -79,13 +93,24 @@ const Player = () => {
             </div>
             <div className="progress">
                 <span className="current-time">
-                    { track.current_time }
+                    { 
+                        time.current < 60 ?
+                        (
+                            '00:' + (time.current < 10 ? '0' + time.current : time.current)
+                        )
+                        :
+                        (
+                            '0' + Math.floor(time.current / 60) + ':' +( time.current - (Math.floor(time.current / 60) * 60))
+                        )
+                    }
                 </span>
                 <span className="progress-bg">
                     <span className="progress-bar"></span>
                 </span>
                 <span className="total-time">
-                    { track.total_time }
+                    { 
+                        '0' + Math.floor(time.total / 60) + ':' + (time.total - (Math.floor(time.total / 60) * 60)) 
+                    }
                 </span>
             </div>
         </Style>
@@ -94,7 +119,8 @@ const Player = () => {
 
 export default Player;
 
-const Style = styled.div`
+const Style = styled.div(
+    ({ progress }) => css`
     position: absolute;
     background: #0F0F0F;
     left: 0;
@@ -173,11 +199,12 @@ const Style = styled.div`
             .progress-bar {
                 position: absolute;
                 left: 0;
-                height: 100%;
+                height: 2px;
                 background: #1E35CD;
-                width: 60%;
+                width: ${ progress }%;
                 box-shadow: 0 0 10px 2px #1E35CD;
             }
         }
     }
-`
+    `
+);
