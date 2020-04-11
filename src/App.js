@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { Navigation, Body } from './components';
+import { Navigation, Body } from "./components";
 
 function App() {
   return (
@@ -21,12 +21,11 @@ export default App;
 const Container = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-columns: 15%;
   grid-template-rows: auto;
-  grid-template-areas:
-    'nav body';
+  grid-template-areas: "nav body";
 
   aside {
+    min-width: 250px;
     height: 100%;
     grid-area: nav;
   }
@@ -35,4 +34,4 @@ const Container = styled.div`
     grid-area: body;
     overflow: hidden;
   }
-`
+`;

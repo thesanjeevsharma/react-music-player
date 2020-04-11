@@ -1,10 +1,21 @@
-This project is still in development. :construction:
+# React Music Player
 
-## Available Scripts
+> A front-end only music player I made just because I was bored, but it turned out to be good.
 
-In the project directory, you can run:
+### Status
 
-### `yarn start`
+:warning: Discontinued, as I got involved in some other fancy stuff.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![Demo Image](/demo.png)
+
+## Installation
+
+- Clone the repo
+- `cd` into dir and run `yarn install`
+- To run a dummy database, run `json-server --watch db.json --port 4000`
+- To start the project, run `yarn start`
+- Visit `http://localhost:3000`
+
+## Author
+
+[Sanjeev Sharma](https://linkedin.com/in/thesanjeevsharma)
